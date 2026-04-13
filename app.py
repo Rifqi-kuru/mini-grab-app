@@ -1,15 +1,22 @@
-# Fungsi hitung tarif dan cetak
-def htg(a, b, c):
-    # c adalah tipe kendaraan
-    if c == 1:
-        res = a * 2000
-    else:
-        res = a * 5000
-    
-    print("User: " + b)
-    print("Total: " + str(res))
-    return res
+from enum import Enum
 
-# Main
-htg(10, "Budi", 1)
-htg(5, "Andi", 2)
+class VehicleType(Enum):
+    BIKE = 1
+    CAR = 2
+
+RATE_BIKE = 2000
+RATE_CAR = 5000
+
+def calculate_fare(distance_km, vehicle_type):
+    if vehicle_type == VehicleType.BIKE:
+        return distance_km * RATE_BIKE
+    return distance_km * RATE_CAR
+
+def display_order_summary(customer_name, fare):
+    print(f"Customer Name: {customer_name}")
+    print(f"Total Fare: Rp{fare}")
+
+# Main Execution
+customer = "Budi"
+fare = calculate_fare(10, VehicleType.BIKE)
+display_order_summary(customer, fare)
